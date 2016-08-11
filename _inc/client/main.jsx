@@ -64,10 +64,11 @@ const Main = React.createClass( {
 		}
 
 		if ( showJumpStart ) {
+			window.location.hash = 'jumpstart';
 			if ( '/' === route ) {
 				const history = createHistory();
 				history.push( '/wp-admin/admin.php?page=jetpack#/jumpstart' );
-			} else if ( '/jumpstart' === route ) {
+			} else {
 				return <JumpStart { ...this.props } />
 			}
 		}

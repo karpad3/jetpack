@@ -32,6 +32,7 @@ export const jumpStartActivate = () => {
 				jumpStart: true
 			} );
 			analytics.tracks.recordEvent( 'jetpack_wpa_jumpstart_submit', {} );
+			window.location.hash = 'dashboard';
 			dispatch( removeNotice( 'jumpstart-activate' ) );
 			dispatch( createNotice( 'is-success', __( 'Recommended features active.' ), { id: 'jumpstart-activate' } ) );
 		} )['catch']( error => {
@@ -61,6 +62,7 @@ export const jumpStartSkip = () => {
 			type: JUMPSTART_SKIP
 		} );
 		analytics.tracks.recordEvent( 'jetpack_wpa_jumpstart_skip', {} );
+		window.location.hash = 'dashboard';
 		history.push( '/wp-admin/admin.php?page=jetpack#/dashboard' );
 		return restApi.jumpStart( 'deactivate' ).then( () => {
 			dispatch( {
