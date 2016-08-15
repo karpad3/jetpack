@@ -33,10 +33,22 @@ import NonAdminView from 'components/non-admin-view';
 import JetpackNotices from 'components/jetpack-notices';
 import SearchPage from 'search/index.jsx';
 import analytics from 'lib/analytics';
+import { getTracksUserData } from 'state/initial-state';
 
 const Main = React.createClass( {
 	componentWillMount: function() {
 		this.props.setInitialState();
+		this.initializeAnalyitics();
+	},
+
+	initializeAnalyitics() {
+		const tracksUser = this.props.tracksUserData;
+		if ( tracksUser ) {
+			analytics.initialize(
+				tracksUser.userid,
+				tracksUser.username
+			);
+		}
 	},
 
 	shouldComponentUpdate: function( nextProps ) {
@@ -181,7 +193,8 @@ export default connect(
 		return assign( {}, state, {
 			getJumpStartStatus: getJumpStartStatus( state ),
 			siteRawUrl: getSiteRawUrl( state ),
-			siteAdminUrl: getSiteAdminUrl( state )
+			siteAdminUrl: getSiteAdminUrl( state ),
+			tracksUserData: getTracksUserData( state )
 		} );
 	},
 	dispatch => bindActionCreators( { setInitialState }, dispatch )

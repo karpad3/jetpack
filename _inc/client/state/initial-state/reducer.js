@@ -54,3 +54,7 @@ export function userCanDisconnectSite( state ) {
 export function userCanViewStats( state ) {
 	return get( state.jetpack.initialState.userData.currentUser.permissions, 'view_stats', false );
 }
+
+export function getTracksUserData( state ) {
+	return get( state.jetpack.initialState, 'tracksUserData' );
+}
