@@ -9,7 +9,7 @@ CURRENT_DIR=$(pwd)
 for WP_SLUG in 'master' 'latest' 'previous'; do
     echo "Preparing $WP_SLUG WordPress...";
 
-    cd $CURRENT_DIR
+    cd $CURRENT_DIR/..
 
     case $WP_SLUG in
 	master)
@@ -30,8 +30,6 @@ for WP_SLUG in 'master' 'latest' 'previous'; do
     sed -i "s/youremptytestdbnamehere/wordpress_tests/" wp-tests-config.php
     sed -i "s/yourusernamehere/root/" wp-tests-config.php
     sed -i "s/yourpasswordhere//" wp-tests-config.php
-    cd "/tmp/wordpress/src/wp-content/plugins/$PLUGIN_SLUG"
-
 
     echo "Done!";
 done
