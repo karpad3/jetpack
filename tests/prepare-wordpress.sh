@@ -11,6 +11,8 @@ for WP_SLUG in 'master' 'latest' 'previous'; do
 
     cd $CURRENT_DIR/..
 
+    echo $(pwd)
+
     case $WP_SLUG in
 	master)
 	    git clone --depth=1 --branch master git://develop.git.wordpress.org/ /tmp/wordpress-master
@@ -23,8 +25,10 @@ for WP_SLUG in 'master' 'latest' 'previous'; do
 	    ;;
     esac
 
-    cp $PLUGIN_SLUG "/tmp/wordpress-$WP_SLUG/src/wp-content/plugins/$PLUGIN_SLUG"
+    cp -r $PLUGIN_SLUG "/tmp/wordpress-$WP_SLUG/src/wp-content/plugins/$PLUGIN_SLUG"
     cd /tmp/wordpress-$WP_SLUG
+
+    echo $(pwd)
 
     cp wp-tests-config-sample.php wp-tests-config.php
     sed -i "s/youremptytestdbnamehere/wordpress_tests/" wp-tests-config.php
