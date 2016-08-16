@@ -18,10 +18,10 @@ for WP_SLUG in 'master' 'latest' 'previous'; do
 	    git clone --depth=1 --branch master git://develop.git.wordpress.org/ /tmp/wordpress-master
 	    ;;
 	latest)
-	    git clone --depth=1 --branch `php ./tests/get-wp-version.php` git://develop.git.wordpress.org/ /tmp/wordpress-latest
+	    git clone --depth=1 --branch `php ./$PLUGIN_SLUG/tests/get-wp-version.php` git://develop.git.wordpress.org/ /tmp/wordpress-latest
 	    ;;
 	previous)
-	    git clone --depth=1 --branch `php ./tests/get-wp-version.php --previous` git://develop.git.wordpress.org/ /tmp/wordpress-previous
+	    git clone --depth=1 --branch `php ./$PLUGIN_SLUG/tests/get-wp-version.php --previous` git://develop.git.wordpress.org/ /tmp/wordpress-previous
 	    ;;
     esac
 
